@@ -17,7 +17,7 @@ const CommentSection = ({ postId, token }) => {
   const fetchComments = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://13.60.28.252:5000/posts/${postId}/comments`, { headers });
+      const res = await axios.get(`/api/posts/${postId}/comments`, { headers });
       setComments(res.data.comments);
     } catch (err) {
       console.error('Error fetching comments:', err);
@@ -37,7 +37,7 @@ const CommentSection = ({ postId, token }) => {
 
     try {
       await axios.post(
-        `http://13.60.28.252:5000/posts/${postId}/comments`,
+        `/api/posts/${postId}/comments`,
         { content: newComment },
         { headers }
       );
@@ -60,7 +60,7 @@ const CommentSection = ({ postId, token }) => {
 
     try {
       await axios.put(
-        `http://13.60.28.252:5000/posts/comments/${id}`,
+        `/api/posts/comments/${id}`,
         { content: editContent },
         { headers }
       );
@@ -80,7 +80,7 @@ const CommentSection = ({ postId, token }) => {
 
   const deleteComment = async (id) => {
     try {
-      await axios.delete(`http://13.60.28.252:5000/posts/comments/${id}`, { headers });
+      await axios.delete(`/api/posts/comments/${id}`, { headers });
       setActionError('');
       fetchComments();
     } catch (err) {
