@@ -9,4 +9,12 @@ const pool = new Pool({
  port: Number(process.env.DB_PORT),  // 👈 Convert to number
 });
 
+// 🔍 Add this test connection and error logger
+pool.connect()
+  .then(() => console.log("✅ DB connected successfully"))
+  .catch((err) => {
+    console.error("❌ DB connection failed:", err.message);
+    process.exit(1);  // Force exit if DB fails
+  });
+
 module.exports = pool;
