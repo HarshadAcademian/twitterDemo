@@ -25,9 +25,9 @@ exports.signup = async (req, res) => {
 
     res.status(201).json({ message: 'User created successfully' });
   } catch (err) {
-    console.error('Signup error:', err.message);
-    res.status(500).json({ error: 'Server error' });
-  }
+  console.error('Signup error:', err);  // 👈 full error (not just err.message)
+  res.status(500).json({ error: 'Server error' });
+}
 };
 
 exports.login = async (req, res) => {
