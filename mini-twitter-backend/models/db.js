@@ -7,6 +7,9 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   password: process.env.DB_PASS,
  port: Number(process.env.DB_PORT),  // 👈 Convert to number
+ ssl: {
+    rejectUnauthorized: false // ✅ Accept Amazon RDS self-signed cert
+  }
 });
 
 // 🔍 Add this test connection and error logger
