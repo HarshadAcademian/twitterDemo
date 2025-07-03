@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({origin : 'http://13.60.28.252'}));
+app.use(cors({origin : 'http://mini-twitter-frontend.s3-website.eu-north-1.amazonaws.com'}));
 app.use(bodyParser.json());
 
 // Base route for testing server status
