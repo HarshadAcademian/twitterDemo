@@ -27,7 +27,7 @@ const Home = () => {
 
     const fetchUser = async () => {
       try {
-        const res = await axios.get('/api/auth/me', { headers });
+        const res = await axios.get('http://13.60.28.252/api/auth/me', { headers });
         setUserName(res.data.user.user_name);
         setUserId(res.data.user.user_id);
       } catch {
@@ -41,12 +41,12 @@ const Home = () => {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get('/api/posts', { headers });
+      const res = await axios.get('http://13.60.28.252/api/posts', { headers });
 
       const postsWithLikes = await Promise.all(
   res.data.posts.map(async (post) => {
     try {
-      const likeRes = await axios.get(`/api/posts/${post.post_id}/likes`, { headers });
+      const likeRes = await axios.get(`http://13.60.28.252/api/posts/${post.post_id}/likes`, { headers });
       return {
         ...post,
         likesCount: likeRes.data.likes,
@@ -77,7 +77,7 @@ const Home = () => {
     }
 
     try {
-      await axios.post('/api/posts', { content }, { headers });
+      await axios.post('http://13.60.28.252/api/posts', { content }, { headers });
       setContent('');
       setMessage('');
       fetchPosts();
@@ -88,7 +88,7 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/posts/${id}`, { headers });
+      await axios.delete(`http://13.60.28.252/api/posts/${id}`, { headers });
       fetchPosts();
     } catch (err) {
       alert('Delete failed.');
@@ -107,7 +107,7 @@ const Home = () => {
     }
 
     try {
-      await axios.put(`/api/posts/${id}`, { content: editContent }, { headers });
+      await axios.put(`http://13.60.28.252/api/posts/${id}`, { content: editContent }, { headers });
       setEditingPostId(null);
       setEditContent('');
       setMessage('');
@@ -121,7 +121,7 @@ const Home = () => {
     if (!window.confirm('Are you sure you want to delete your account? This cannot be undone.')) return;
 
     try {
-      await axios.delete('/api/auth/me', { headers });
+      await axios.delete('http://13.60.28.252/api/auth/me', { headers });
       localStorage.removeItem('token');
       navigate('/login');
     } catch (err) {

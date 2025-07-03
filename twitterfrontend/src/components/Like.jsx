@@ -15,7 +15,7 @@ const Like = ({ postId, initialLikesCount, initialLiked, token }) => {
   const toggleLike = async () => {
     try {
       const response = await axios.post(
-        `/api/posts/${postId}/like`,
+        `http://13.60.28.252/api/posts/${postId}/like`,
         {},
         { headers }
       );

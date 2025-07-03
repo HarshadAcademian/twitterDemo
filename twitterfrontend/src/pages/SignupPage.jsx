@@ -54,7 +54,7 @@ const Signup = () => {
     }
 
     try {
-      const res = await axios.post('/api/auth/signup', formData);
+      const res = await axios.post('http://13.60.28.252/api/auth/signup', formData);
       setMessage(res.data.message || 'Signup successful!');
       setTimeout(() => navigate('/login'), 1500);
     } catch (err) {
